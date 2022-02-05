@@ -35,7 +35,9 @@
                         </div>
                         <div class="md:w-1/2 xl:w-1/2 ">
                             @if($task->pdf=="NULL")
-                            <img src="{{asset($task->img)}}" alt="" class="w-1 h-1">
+                            <div class="bg-cyan-300">
+                                Recent Image <img src="{{asset($task->img)}}" class="object-scale-down h-48 w-96 ...">
+                             </div>
                             @else
                             <label for="" class="font-bold w-full"> {{$task->pdf }} </label>
                             @endif

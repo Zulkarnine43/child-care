@@ -13,6 +13,16 @@ class TaskController extends Controller
     {
  
         if($request->isMethod('post')){
+
+            $request->validate([
+                'title'=>'required|unique:tasks|max:25',
+                'inst'=>'required',
+                'topic'=>'required',
+                'file'=>'required',
+                'point'=>'required',
+                'exp_date'=>'required|after_or_equal:today',
+            ]);
+
             $data =$request->all();
 
             $file = $request->file('file');

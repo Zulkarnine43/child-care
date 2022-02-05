@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\TaskController;
 use App\Http\Controllers\Admin\ItemController;
+use App\Http\Controllers\Admin\ChildrenController;
+
 
 
 
@@ -33,11 +35,11 @@ Route::prefix('admin')->middleware('theme:admin')->name('admin.')->group(functio
 
         
         // //CHILDREN
-        // Route::match(['get','post'],'/add-item',[ItemController::class,'addItem'] )->name('addItem');
-        // Route::match(['get','post'],'/view-item',[ItemController::class,'viewItem'] )->name('viewItem');
-        // Route::match(['get','post'],'/edit-item/{id}',[ItemController::class,'editItem'] )->name('editItem');
-        // Route::match(['get','post'],'/update-item',[ItemController::class,'updateItem'] )->name('updateItem');
-        // Route::match(['get','post'],'/delete-item/{id}',[ItemController::class,'deleteItem'] )->name('deleteItem');
+        // Route::match(['get','post'],'/add-item',[ChildrenController::class,'addItem'] )->name('addItem');
+        Route::match(['get','post'],'/view-children',[ChildrenController::class,'viewChildren'] )->name('viewChildren');
+        // Route::match(['get','post'],'/edit-item/{id}',[ChildrenController::class,'editItem'] )->name('editItem');
+        // Route::match(['get','post'],'/update-item',[ChildrenController::class,'updateItem'] )->name('updateItem');
+        // Route::match(['get','post'],'/delete-item/{id}',[ChildrenController::class,'deleteItem'] )->name('deleteItem');
 
 
     });

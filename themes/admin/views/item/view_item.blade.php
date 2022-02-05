@@ -9,8 +9,6 @@
         </div>
     </div>
 
-    
-
     <div class="w-full  p-10">
 
         @if(Session::has('success'))
@@ -32,31 +30,37 @@
         </div>
       @endif
 
-    <table class="border-separate border border-slate-400 ...">
+      <table class="table-fixed w-full">
         <thead>
-          <tr>
-            <th class="border border-slate-300 ...">Title</th>
-            <th class="border border-slate-300 ...">Description</th>
-            <th class="border border-slate-300 ...">Point</th>
-            <th class="border border-slate-300 ...">Image</th>
-            <th class="border border-slate-300 ...">Action</th>
-          </tr>
+            <tr class="bg-gray-100">
+                <th class="px-4 py-2 w-20">#.</th>
+                <th class="px-4 py-2">Title</th>
+                <th class="px-4 py-2">Description</th>
+                <th class="px-4 py-2">Point</th>
+                <th class="px-4 py-2">Image</th>
+                <th class="px-4 py-2">Action</th>
+            </tr>
         </thead>
         <tbody>
-            @foreach ($items as $item)
-            <tr>
-                <td class="border border-slate-300 ...">{{$item->title}}</td>
-                <td class="border border-slate-300 ...">{!!$item->desc !!}</td>
-                <td class="border border-slate-300 ...">{{$item->point}}</td>
-                <td class="border border-slate-300 ...">{{$item->img}}</td>
-                <td>
-                      <a class="rounded-sm px-3 bg-green-400" href="{{ route('admin.editItem',['id'=>$item->id]) }}">EDIT</a>
-                      <a class="rounded-sm px-3 bg-red-400" href="{{ route('admin.deleteItem',['id'=>$item->id]) }}">DELETE</a>
+          @php($i=1)
+          @foreach ($items as $item)
+            <tr class="bg-gray-100">
+                <td class="border px-4 py-2">{{$i++}}</td>
+                <td class="border px-4 py-2">{{$item->title}}</td>
+                <td class="border px-4 py-2">{!!$item->desc !!}</td>
+                <td class="border px-4 py-2">{{$item->point}}</td>
+                <td class="border px-4 ">
+                  <img src="{{asset($item->img)}}" alt="">
                 </td>
-              </tr>
+                <td class="border px-4 py-2">
+                  <a type="btn" href="{{ route('admin.editItem',['id'=>$item->id]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
+                    <a type="btn" href="{{ route('admin.deleteItem',['id'=>$item->id]) }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</a>
+                </td>
+            </tr>
             @endforeach
-         
         </tbody>
       </table>
     </div>
+</div>
+
 @endsection

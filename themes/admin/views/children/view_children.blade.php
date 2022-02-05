@@ -4,14 +4,12 @@
 
     <div class="bg-gray-800 ">
         <div class=" flex flex-wrap rounded-tl-3xl bg-gradient-to-r from-blue-900 to-gray-800 p-4 shadow text-2xl text-white">
-            <h1 class="font-bold w-full md:w-1/2 xl:w-1/2 text-left ">View Task</h1>
-            <p class="font-bold w-full md:w-1/2 xl:w-1/2 text-right text-black "><a href="{{ route('admin.addTask') }}" class="rounded-sm px-3 bg-blue-400">Add Task</a></p>
+            <h1 class="font-bold w-full md:w-1/2 xl:w-1/2 text-left ">View Children</h1>
         </div>
     </div>
 
-  
+    
     <div class="w-full  p-10">
-
         @if(Session::has('success'))
     <div x-data="{ show: true }" x-show="show" class="bg-green-400 border border-green-700 text-white px-4 py-3 rounded relative" role="alert">
         <strong class="font-bold">Holy smokes!</strong>
@@ -31,43 +29,29 @@
         </div>
       @endif
 
-    <table  class="table-fixed w-full">
+    <table class="table-fixed w-full">
         <thead>
-          <tr  class="bg-gray-100">
+          <tr class="bg-gray-100">
             <th class="px-4 py-2 w-20">#</th>
-            <th class="px-4 py-2">Name</th>
-            <th class="px-4 py-2">Instructions</th>
-            <th class="px-4 py-2">Topic</th>
-            <th class="px-4 py-2">PDF/Image</th>
-            <th class="px-4 py-2">Point</th>
-            <th class="px-4 py-2">Expair Date</th>
+            <th class="px-4 py-2">Full Name</th>
+            <th class="px-4 py-2">Username</th>
+            <th class="px-4 py-2">Password</th>
             <th class="px-4 py-2">Action</th>
           </tr>
         </thead>
         <tbody>
-          @php($i=1)
-            @foreach ($tasks as $task)
+      
             <tr class="bg-gray-100">
-              <td class="border px-4 py-2">{{$i++}}</td>
-                <td class="border px-4 py-2">{{$task->title}}</td>
-                <td class="border px-4 py-2">{!!$task->inst !!}</td>
-                <td class="border px-4 py-2">{{$task->topic}}</td>
-                @if($task->pdf=="NULL")
-                <td class="border px-4 ">
-                  <img src="{{asset($task->img)}}" alt="">
+                <td class="border px-4 py-2">1</td>
+                <td class="border px-4 py-2">Zulkar Nine</td>
+                <td class="border px-4 py-2">zulkarnine43</td>
+                <td class="border px-4 py-2">12345678</td>
+                <td>
+                  <a type="btn"  class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Edit</a>
+                    <a type="btn"  class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Delete</a>
                 </td>
-                @elseif($task->img=="NULL")
-                <td class="border px-4 py-2">{{$task->pdf}}</td>
-                @endif
-
-                <td class="border px-4 py-2">{{$task->point}}</td>
-                <td class="border px-4 py-2">{{$task->exp_date}}</td>
-                <td class="border px-4 py-2">
-                  <a type="btn" href="{{ route('admin.editTask',['id'=>$task->id]) }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-0.5  px-2 rounded">Edit</a>
-                      <a type="btn" href="{{ route('admin.deleteTask',['id'=>$task->id]) }}" class="bg-red-500 hover:bg-red-700 text-white font-bold py-0.5 px-2 rounded">Delete</a>
-                  </td>
               </tr>
-            @endforeach
+       
          
         </tbody>
       </table>
