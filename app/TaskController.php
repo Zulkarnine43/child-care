@@ -6,7 +6,6 @@ use App\Models\Task;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Symfony\Component\Console\Input\Input;
-use App\Models\Std_assignment;
 
 class TaskController extends Controller
 {
@@ -14,28 +13,23 @@ class TaskController extends Controller
     {
  
         if($request->isMethod('post')){
-
-            
-
             $data =$request->all();
 
             $file = $request->file('file');
-            // echo "<pre>"; print_r($file); die;
             if ($file) {
                 $extension=$file->getClientOriginalExtension();
-                
-                if($extension== 'pdf'){
-                    $PDF=time().'.'.$extension;
-                    $dest2='document/file/';
-                    $pdfUrl = $dest2.$PDF;
-                    $file->move($dest2,$PDF);
-                }elseif($extension == 'png'||'PNG' || 'pNg' || 'PNg' || 'jpg' || 'JPg' || 'jpeg'){
+                if($extension== 'png'){
                     $Image=time().'.'.$extension;
                     $dest='document/image/';
                     $imageUrl = $dest.$Image;
                     $file->move($dest,$Image);
                 }
-                else{
+                elseif($extension== 'pdf'){
+                    $PDF=time().'.'.$extension;
+                    $dest2='document/file/';
+                    $pdfUrl = $dest2.$PDF;
+                    $file->move($dest2,$PDF);
+                }else{
                     return redirect()->route('admin.addTask')->with('error','Please Upload Image or File');
                 }  
             }
@@ -126,8 +120,6 @@ class TaskController extends Controller
             $task->save();
 
             return redirect()->route('admin.viewTask')->with('success','Task Updated Successfully');
-    }
-
-
+        }
    
 }

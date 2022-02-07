@@ -14,7 +14,6 @@ class ItemController extends Controller
     {
  
         if($request->isMethod('post')){
-
             $data =$request->all();
 
             $file = $request->file('file');
